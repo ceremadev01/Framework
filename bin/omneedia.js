@@ -6,7 +6,7 @@
 
 $_VERSION = "0.9.7";
 
-CDN = "http://omneedia.github.io/cdn"; //PROD
+CDN = "http://cdn.omneedia.com/"; //PROD
 //CDN = "/cdn"; // DEBUG
 
 var fs = require('fs');
@@ -2712,10 +2712,10 @@ function make_libraries() {
             };
         }
     };
-
+	
     async.map(require, download, function (err, result) {
         fs.writeFileSync(PROJECT_DEV + path.sep + "webapp" + path.sep + "libraries.js", pluscode + "\n\n" + result.join('\n\n\n'));
-        make_ws();
+		make_ws();
     });
 };
 
