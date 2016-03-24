@@ -4,7 +4,7 @@
  *
  */
 
-$_VERSION = "0.9.7";
+$_VERSION = "0.9.7a";
 
 CDN = "http://cdn.omneedia.com/"; //PROD
 //CDN = "/cdn"; // DEBUG
@@ -5594,11 +5594,23 @@ figlet(' omneedia', {
             limit: '5000mb'
             , extended: true
         }));
-
-        var multer = require('multer');
-        app.use(multer({
+		
+		var multer = require('multer');
+		
+		var storage = multer.diskStorage({
+			destination: function (req, file, cb) {
+				cb(null, __dirname + require('path').sep + 'uploads')
+			}/*,
+			filename: function (req, file, cb) {
+				cb(null, file.originalname)
+			}*/
+		});		
+		        
+        /*app.use(multer({
             dest: __dirname + require('path').sep + 'uploads'
-        }).array());
+        }).array());*/
+		
+		app.UPLOAD=multer({ storage: storage });
 
         app.use(require('cookie-parser')());
 
@@ -6243,25 +6255,30 @@ figlet(' omneedia', {
                     return fs.realpathSync(PROJECT_WEB + path.sep + ".." + path.sep + "var" + path.sep + "tmp") + path.sep + req.session.user.pudid;
                 };
                 _App.upload = {
-                    up: function (req, res, cb) {
-                        for (var el in req.files) {};
-                        if (el) {
-                            var stat = require('fs').statSync(__dirname + require('path').sep + 'uploads' + require('path').sep + req.files[el].name);
+                    up: function (req,cb) {
+                        console.log(req.files);
+                        for (var el=0;el<req.files.length;el++) {
+                            var stat = require('fs').statSync(req.files[el].path);
                             var size = stat.size;
                             var o = {
-                                message: req.files[el].name + "|" + req.files[el].fieldname + "|" + _EXT_.getContentType(req.files[el].name) + '|' + size
+                                message: req.files[el].path + "|" + req.files[el].fieldname + "|" + _EXT_.getContentType(req.files[el].path) + '|' + size
                                 , test: "OK"
                                 , success: true
                             };
-                        } else var o = {
-                            message: "FATAL_ERROR"
-                            , test: "OK"
-                            , success: false
+                            if (cb) {
+                                if (typeof(cb) == 'function') cb(o); else cb.end(JSON.stringify(o));
+                            }
                         };
-                        if (cb) {
-                            cb(req.files[el].name);
-                        };
-                        res.end(JSON.stringify(o));
+                        if (req.files.length==0) {
+                            if (cb) {
+                                var o={
+                                    message: "NOT_FOUND"
+                                    , test: "OK"
+                                    , success: false
+                                };
+                                if (typeof(cb) == 'function') cb(o); else cb.end(JSON.stringify(o));
+                            }
+                        }
                     }
                     , reader: function (filename, cb) {
                         if (!filename) cb("NOT_FOUND", null);

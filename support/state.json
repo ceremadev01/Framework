@@ -1,0 +1,72 @@
+{
+    "problems-panel": {
+        "visible": true
+    },
+    "welcomeProjects": [
+        "/samples/fr/Premiers pas"
+    ],
+    "projectPath": "/projects/Contents/",
+    "afterFirstLaunch": "true",
+    "project": {
+        "/samples/fr/Premiers pas/": {
+            "code-folding.folds": {},
+            "mainView.state": {
+                "orientation": null,
+                "activePaneId": "first-pane",
+                "splitPercentage": 1,
+                "panes": {
+                    "first-pane": [
+                        {
+                            "file": "/samples/fr/Premiers pas/index.html",
+                            "active": true,
+                            "viewState": {
+                                "selections": [
+                                    {
+                                        "start": {
+                                            "line": 0,
+                                            "ch": 0
+                                        },
+                                        "end": {
+                                            "line": 0,
+                                            "ch": 0
+                                        },
+                                        "reversed": false,
+                                        "primary": true
+                                    }
+                                ],
+                                "scrollPos": {
+                                    "x": 0,
+                                    "y": 0
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "/projects/Contents/": {
+            "project.treeState": [
+                [
+                    "/projects/Contents/Application/"
+                ],
+                [
+                    "/projects/Contents/Application/app/"
+                ],
+                [
+                    "/projects/Contents/Application/app/controller/"
+                ]
+            ],
+            "code-folding.folds": {
+                "/projects/Contents/Application/app/controller/CMain.js": {}
+            }
+        }
+    },
+    "nextHealthDataSendTime": 1458312270631,
+    "workingSetSortMethod": "cmd.sortWorkingSetByAdded",
+    "auto-install-extensions": {},
+    "recentProjects": [
+        "/projects/Contents",
+        "/samples/fr/Premiers pas"
+    ],
+    "healthDataNotificationShown": true
+}
