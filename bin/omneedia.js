@@ -4035,7 +4035,7 @@ function do_get() {
         }
     };
 }
-/*
+
 function App_Migration_Db()
 {
 
@@ -4106,8 +4106,8 @@ function App_Migration_Db()
 		
 		
 };
-*/
-/*function App_Model_Db()
+
+function App_Model_Db()
 {
 	function _SDATA(item)
 	{
@@ -4234,7 +4234,7 @@ function App_Migration_Db()
 	};
 	
 };
-*/
+
 function AppUpdate(zzz) {
     if (argv.indexOf('db') > -1) {
         console.log('  - Updating DB');
@@ -5073,14 +5073,26 @@ figlet(' omneedia', {
         console.log('  ' + JSON.stringify(config.current, null, 4));
         console.log('');
         return;
-    }
+    };
 
     // add interface
     if (argv.indexOf('add') > -1) {
 
         return;
     };
+	
+	if (argv.indexOf('updatedb')>-1)
+	{
+		App_Model_Db();
+		return;
+	};
 
+	if (argv.indexOf('importdb')>-1)
+	{
+		App_Migration_Db();
+		return;
+	};
+	
     // launcher
     if (argv.indexOf('code') > -1) {
         var exec = require('child_process').spawn;
