@@ -5612,17 +5612,14 @@ figlet(' omneedia', {
 		var storage = multer.diskStorage({
 			destination: function (req, file, cb) {
 				cb(null, __dirname + require('path').sep + 'uploads')
-			}/*,
-			filename: function (req, file, cb) {
-				cb(null, file.originalname)
-			}*/
+			},
+			filename: function(req,file,cb) {
+				cb(null,Math.uuid()+file.originalname.substr(file.originalname.lastIndexOf('.'),file.originalname.length));
+			}
 		});		
 		        
-        /*app.use(multer({
-            dest: __dirname + require('path').sep + 'uploads'
-        }).array());*/
-		
 		app.UPLOAD=multer({ storage: storage });
+		app.upload=app.UPLOAD;
 
         app.use(require('cookie-parser')());
 
@@ -6293,9 +6290,10 @@ figlet(' omneedia', {
                         }
                     }
                     , reader: function (filename, cb) {
+						console.log(filename);
                         if (!filename) cb("NOT_FOUND", null);
                         else {
-                            var path = __dirname + require('path').sep + 'uploads' + require('path').sep + filename;
+                            var path = filename;
                             if (fs.existsSync(path)) {
                                 fs.readFile(path, cb);
                             } else cb("NOT_FOUND", null);
