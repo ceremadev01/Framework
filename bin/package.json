@@ -6,7 +6,7 @@
   "dependencies": {
     "db": "https://github.com/Omneedia/db/tarball/master",
     "api": "https://github.com/Omneedia/api/tarball/master",
-    "authom": "https://github.com/Omneedia/authom.git",
+    "authom": "https://github.com/Omneedia/authom/tarball/master",
 	"socket.io": "",
 	"socket.io-client": "",
 	"adm-zip": "",
@@ -32,7 +32,6 @@
 	"grunt-cli": "",
 	"html-minifier": "",
 	"htmlparser2": "",
-	"mkdirp": "",
 	"moment": "",
 	"morgan": "",
 	"multer": "",
