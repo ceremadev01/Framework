@@ -5609,6 +5609,8 @@ figlet(' omneedia', {
 		
 		var multer = require('multer');
 		
+		if (!fs.existsSync(__dirname + require('path').sep + 'uploads')) fs.mkdirSync(__dirname + require('path').sep + 'uploads');
+		
 		var storage = multer.diskStorage({
 			destination: function (req, file, cb) {
 				cb(null, __dirname + require('path').sep + 'uploads')
