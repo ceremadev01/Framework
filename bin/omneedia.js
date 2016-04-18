@@ -4969,7 +4969,7 @@ var figlet = require('figlet');
 
 figlet(' omneedia', {
     //font: 'ANSI Shadow',
-    font: "ogre"
+    font: "Ogre"
 }, function (err, art) {
 
     if (err) {
